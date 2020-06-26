@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  api:
+    image: sourischat.api
+    build: .
+    volumes:
+      - ./:/usr/src/app:cached
+      - npm_cache:/root/.npm:delegated
+      - node_modules:/app/node_modules:delegated
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      OAUTH_GITHUB_ID: ${OAUTH_GITHUB_ID}
+      OAUTH_GITHUB_SECRET: ${OAUTH_GITHUB_SECRET}
+      MONGODB_URI: ${MONGODB_URI}
+
+volumes:
+  npm_cache:
+  node_modules:
