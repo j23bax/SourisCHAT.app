@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SourisCHAT App [chat.souris.cloud]</title>
+    <meta name="description" content="A SourisCHAT App server">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+        font-weight: 400;
+        font-size: 16px;
+        background: #110529;
+        color: rgb(233, 233, 233);
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      img {
+        height: 50vh;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src="logo.png" /> -->
+    <img src="logo_transparent.png" />
+    <h1>Still better than Discordapp! Not for normies!</h1>
+    <h2 id="loginText" hidden>Logging you in...</h2>
+    <script>
+      const parent = window.opener;
+      const params = new URLSearchParams(window.location.hash.slice(1));
+      const token = params.get('access_token');
+      const error = params.get('error');
+      if (parent !== null) {
+        document.getElementById('loginText').setAttribute('hidden', false);
+
+        if (token) {
+          parent.postMessage({ token }, 'http://localhost:8080/')
+        } else if (error) {
+          alert('Some error occurred when trying to authenticate you with OAuth! Check console for more informations!');
+          parent.postMessage({ error }, 'http://localhost:8080/')
+        }
+
+        window.close();
+      }
+    </script>
+  </body>
+</html>

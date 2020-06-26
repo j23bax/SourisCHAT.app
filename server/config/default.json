@@ -1,0 +1,34 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "JWT_SECRET",
+    "authStrategies": [
+      "jwt"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://sourischat.app",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "oauth": {
+      "redirect": "/",
+      "github": {
+        "key": "OAUTH_GITHUB_ID",
+        "secret": "OAUTH_GITHUB_SECRET"
+      }
+    }
+  },
+  "mongodb": "MONGODB_URI"
+}
