@@ -4,7 +4,13 @@
       <img :src="message.user.image" />
     </div>
     <div class="message_contents">
-      <div class="message__info">{{ message.user.name }} <small>{{ new Date(message.createdAt).toLocaleString() }}</small></div>
+      <div class="message__info">
+        {{ message.user.name }}
+        &nbsp;
+        <small>
+          {{ new Date(message.createdAt).toLocaleString() }}
+        </small>
+      </div>
       <div class="message__text">{{ message.text }}</div>
     </div>
   </div>
