@@ -2,6 +2,7 @@ version: '3.7'
 services:
   api:
     image: sourischat.api
+    restart: on-failure
     build: .
     volumes:
       - ./:/usr/src/app:cached
